@@ -1,0 +1,20 @@
+<div class="sidebar" [ngClass]="{'collapsed': !isExpanded}">
+    <div class="sidebar-header">
+        <div class="logo-container" [ngClass]="{'collapsed': !isExpanded}">
+            <img *ngIf="isExpanded" src="assets/logo-cpv.png" alt="Logo" class="logo-full">
+            <span class="logo-text" *ngIf="isExpanded">CPV</span>
+        </div>
+        <button class="toggle-btn" (click)="toggleSidebar()">
+            <i [class]="isExpanded ? 'fas fa-chevron-left' : 'fas fa-chevron-right'"></i>
+        </button>
+    </div>
+
+    <div class="menu-container">
+        <div *ngFor="let item of menuItems" class="menu-item"
+            [ngClass]="{'active': item.active, 'collapsed': !isExpanded}" [routerLink]="item.route"
+            routerLinkActive="active">
+            <i [class]="item.icon"></i>
+            <span *ngIf="isExpanded" class="menu-text">{{item.title}}</span>
+        </div>
+    </div>
+</div>

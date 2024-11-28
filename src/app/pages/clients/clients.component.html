@@ -1,0 +1,88 @@
+<div class="main-container">
+  <div class="header">
+    <h1>Gestão de Clientes</h1>
+    <app-button (click)="openModalCliente()">NOVO CLIENTE</app-button>
+  </div>
+
+  <div class="search-container">
+    <input type="text" class="search-input" placeholder="Pesquisar clientes..." (keyup)="updateFilter($event)">
+  </div>
+
+  <div class="table-container">
+    <ngx-datatable #myTable class="dark-theme expandable" [rows]="rows" [loadingIndicator]="loading" [rowHeight]="50"
+      [headerHeight]="50" [footerHeight]="50" [scrollbarH]="false" [scrollbarV]="true" [limit]="10"
+      [columnMode]="'force'" style="height: calc(100vh - 200px);">
+
+      <ngx-datatable-column name="ID" prop="clienteId" [width]="40" [canAutoResize]="false">
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Nome" prop="nome" [flexGrow]="1">
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="UF" prop="uf" [width]="100">
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Início Contrato" prop="inicioDeContratoFormatado" [width]="150">
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Fim Contrato" prop="fimDeContratoFormatado" [width]="150">
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Ações" [sortable]="false" [width]="100" [canAutoResize]="false">
+        <ng-template ngx-datatable-header-template>
+          <span class="header-alignment">Ações</span>
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <div class="actions">
+            <button class="action-btn edit" (click)="openEditModal(row)">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button class="action-btn delete" (click)="deleteCliente(row)">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+</div>
+
+<app-modal #modalCliente modalId="modalCliente" title="Novo Cliente" (onSubmit)="onSubmit()">
+  <form [formGroup]="formCliente">
+    <app-input type="text" [form]="formCliente" label="Nome" formControlName="nome"
+      [validateOnSubmit]="validateOnSubmit" errorMessage="Insira um nome para o cliente">
+    </app-input>
+
+    <app-input type="array:string" [form]="formCliente" [selectOptions]="uf" label="UF" formControlName="uf"
+      [validateOnSubmit]="validateOnSubmit" errorMessage="Selecione um estado">
+    </app-input>
+
+    <app-input type="date" [form]="formCliente" label="Inicio de Contrato" formControlName="inicioDeContrato"
+      [validateOnSubmit]="validateOnSubmit" errorMessage="Selecione uma data">
+    </app-input>
+
+    <app-input type="date" [form]="formCliente" label="Fim de Contrato" formControlName="fimDeContrato"
+      [validateOnSubmit]="validateOnSubmit" errorMessage="Selecione uma data">
+    </app-input>
+  </form>
+</app-modal>
+
+<app-modal #modalEdit modalId="modalEdit" title="Editar Cliente" (onSubmit)="onSubmitEdit()">
+  <form [formGroup]="formEdit">
+    <app-input type="text" [form]="formEdit" label="Nome" formControlName="nome" [validateOnSubmit]="validateOnSubmit"
+      errorMessage="Insira um nome para o cliente">
+    </app-input>
+
+    <app-input type="array:string" [form]="formEdit" [selectOptions]="uf" label="UF" formControlName="uf"
+      [validateOnSubmit]="validateOnSubmit" errorMessage="Selecione um estado">
+    </app-input>
+
+    <app-input type="date" [form]="formEdit" label="Inicio de Contrato" formControlName="inicioDeContrato"
+      [validateOnSubmit]="validateOnSubmit" errorMessage="Selecione uma data">
+    </app-input>
+
+    <app-input type="date" [form]="formEdit" label="Fim de Contrato" formControlName="fimDeContrato"
+      [validateOnSubmit]="validateOnSubmit" errorMessage="Selecione uma data">
+    </app-input>
+  </form>
+</app-modal>

@@ -1,0 +1,11 @@
+<div class="datepicker-container">
+    <input type="text" class="form-control" [attr.placeholder]="placeholder" [bsConfig]="bsConfig"
+        [(ngModel)]="selectedDate" (bsValueChange)="onDateChange($event)" (keypress)="validateNumberOnly($event)"
+        (input)="formatInput($event)" *ngIf="!isRange" #dp="bsDatepicker" bsDatepicker>
+    <input type="text" class="form-control" [attr.placeholder]="placeholder" [bsConfig]="bsConfig"
+        [(ngModel)]="selectedDate" (bsValueChange)="onDateChange($event)" (keypress)="validateNumberOnly($event)"
+        (input)="formatInput($event)" *ngIf="isRange" #dp="bsDaterangepicker" bsDaterangepicker>
+    <span class="calendar-icon">
+        <i class="fa-regular fa-calendar"></i>
+    </span>
+</div>

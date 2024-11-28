@@ -1,0 +1,48 @@
+.datepicker-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+
+    input {
+        text-align: center;
+        padding-right: 30px;
+        height: 35px;
+        border-radius: 5px;
+        border: 1px solid #cccccc;
+        color: #3f3f3f;
+        background: #F5F5F5;
+        cursor: pointer;
+        transition: .3s ease-in-out;
+
+        &:focus {
+            outline: none;
+        }
+
+        &:hover {
+            background: #f0f0f0;
+        }
+    }
+
+    .calendar-icon {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        color: #3f3f3f;
+        font-size: 20px;
+    }
+}
+
+::placeholder {
+    color: #999;
+    opacity: 1;
+}
+
+:-ms-input-placeholder {
+    color: #999;
+}
+
+::-ms-input-placeholder {
+    color: #999;
+}

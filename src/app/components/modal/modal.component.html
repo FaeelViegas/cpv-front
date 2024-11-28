@@ -1,0 +1,19 @@
+<div class="modal-overlay" [class.active]="modalService.isModalOpen(modalId)">
+    <div class="modal">
+        <div class="modal-header">
+            <h2 class="title">{{title}}</h2>
+            <i class="fa-solid fa-x modal-close" (click)="closeModal()"></i>
+        </div>
+        <div class="modal-body">
+            <form (ngSubmit)="onSubmit.emit()" #form="ngForm">
+                <ng-content></ng-content>
+                <div class="modal-footer">
+                    <ng-content select="[modalFooter]"></ng-content>
+                    <div class="modal-actions">
+                        <app-button [submit]="true">{{buttonLabel}}</app-button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

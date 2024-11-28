@@ -1,0 +1,97 @@
+.modal {
+    --table-overflow-y: auto;
+    --table-height: 270px;
+
+    border-radius: 0.5em;
+    margin: 10px;
+    width: 100%;
+    min-width: 400px;
+    max-width: 800px;
+    position: absolute;
+    background-color: var(--background-light);
+    opacity: var(--modal-opacity, 0);
+    translate: var(--modal-position, 0 -100px);
+    transition: 0.2s;
+
+    &-overlay {
+        display: grid;
+        place-items: center;
+        position: fixed;
+        inset: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 999;
+        background: rgba(0, 0, 0, 0.7);
+        opacity: var(--modal-overlay-opacity, 0);
+        pointer-events: var(--modal-pointer, none);
+        transition: 0.2s;
+        visibility: hidden;
+
+        &.active {
+            --modal-overlay-opacity: 1;
+            --modal-opacity: 1;
+            --modal-position: 0 -20px;
+            --modal-pointer: auto;
+            visibility: visible;
+        }
+    }
+
+    &-header {
+        padding: 10px;
+        color: var(--text);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: var(--background);
+        border-radius: 0.5em 0.5em 0 0;
+    }
+
+    &-body {
+        padding: 20px;
+        max-height: 400px;
+        overflow-y: auto;
+        background-color: var(--background-light);
+        color: var(--text);
+    }
+
+    &-footer {
+        padding: 10px;
+        background: var(--background);
+        display: flex;
+        justify-content: space-between;
+        border-radius: 0 0 0.5em 0.5em;
+    }
+
+    &-actions {
+        margin-inline-start: auto;
+    }
+
+    &-close {
+        cursor: pointer;
+        color: var(--text-secondary);
+
+        &:hover {
+            color: var(--primary);
+        }
+    }
+}
+
+.title {
+    color: var(--primary);
+    font-size: 24px;
+    font-weight: 500;
+
+    &.neutral,
+    &.positive {
+        color: var(--primary);
+    }
+
+    &.negative {
+        color: var(--color-danger);
+    }
+}
+
+
+.title {
+    color: #fff;
+}

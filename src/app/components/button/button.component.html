@@ -1,0 +1,12 @@
+<ng-template #buttonContent>
+  <ng-content></ng-content>
+</ng-template>
+
+<a *ngIf="href" [class]="generateButtonAttributes()" [href]="href">
+  <ng-container *ngTemplateOutlet="buttonContent"></ng-container>
+</a>
+
+<button *ngIf="!href" [class]="generateButtonAttributes()" [type]="submit ? 'submit' : 'button'"
+  (click)="onAppButtonClick($event)" [disabled]="disabled" [hidden]="hidden">
+  <ng-container *ngTemplateOutlet="buttonContent"></ng-container>
+</button>

@@ -1,0 +1,1 @@
+export type ComponentTone = "positive" | "neutral" | "negative";
